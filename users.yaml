@@ -8,6 +8,7 @@
       user:
         name:         "{{ item }}"
         group:        "{{ sudogroup }}"
+        shell: /bin/bash
       with_items: "{{ users }}"
     - name:           Add authorized_keys
       authorized_key:
