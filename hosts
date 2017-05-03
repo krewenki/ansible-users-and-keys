@@ -1,0 +1,3 @@
+[scranton]
+print-server.local sudogroup=sudo
+conference-display.local sudogroup=wheel

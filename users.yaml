@@ -1,0 +1,17 @@
+---
+  - hosts:          scranton
+    remote_user:     root
+    vars_files:
+    - vars/users.yml
+    tasks:
+    - name:           Create User account
+      user:
+        name:         "{{ item }}"
+        group:        "{{ sudogroup }}"
+      with_items: "{{ users }}"
+    - name:           Add authorized_keys
+      authorized_key:
+        user:         "{{ item }}"
+        state:        present
+        key:          "{{ lookup('file', './authorized_keys/{{ item }}') }}"
+      with_items: "{{ users }}"
